@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Психопатология тест 15 вопросов</title>
+<style>
+body{font-family:Arial;background:#eef4ff;text-align:center;padding:20px}
+.card{background:#fff;max-width:650px;margin:auto;padding:25px;border-radius:15px}
+button{display:block;width:90%;margin:10px auto;padding:12px;border:0;border-radius:10px;background:#3867d6;color:white;font-size:16px}
+#result{font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🧠 Психопатология</h1>
+<h3 id="question"></h3>
+<div id="buttons"></div>
+<p id="result"></p>
+<p>Баллы: <span id="score">0</span></p>
+</div>
+<script>
+let q=[
+["Повышение чувствительности к обычным раздражителям","Гиперестезия","Гипестезия","Анестезия"],
+["Снижение чувствительности","Гипестезия","Гиперестезия","Парестезия"],
+["Ощущение 'мурашек', покалывания без причины","Парестезия","Анестезия","Иллюзия"],
+["Ошибочное восприятие реально существующего объекта","Иллюзия","Галлюцинация","Бред"],
+["Восприятие без реального объекта","Галлюцинация","Иллюзия","Амнезия"],
+["Предметы кажутся уменьшенными","Микропсия","Макропсия","Дереализация"],
+["Ощущение 'я как будто не я'","Деперсонализация","Дереализация","Апатия"],
+["Быстрая смена мыслей, скачка идей","Ускорение мышления","Замедление мышления","Персеверация"],
+["Убеждение, что за человеком следят","Бред преследования","Бред величия","Бред ревности"],
+["Навязчивые мысли с сохранением критики","Навязчивые идеи","Бредовые идеи","Сверхценные идеи"],
+["Утрата воспоминаний о событиях до болезни","Ретроградная амнезия","Антероградная амнезия","Гипермнезия"],
+["Приобретённое снижение когнитивных функций","Деменция","Интеллектуальная недостаточность","Гипермнезия"],
+["Патологически сниженное настроение","Гипотимия","Гипертимия","Эйфория"],
+["Снижение волевой активности","Гипобулия","Гипербулия","Парабулия"],
+["Неподвижность, молчание, отсутствие реакции","Кататонический ступор","Кататоническое возбуждение","Мутизм"]
+];
+let i=0,score=0;
+function show(){
+if(i>=q.length){document.querySelector(".card").innerHTML="<h1>🎉 Тест окончен</h1><h2>Результат: "+score+"/15</h2>";return}
+document.getElementById("question").textContent=(i+1)+". "+q[i][0];
+let b=document.getElementById("buttons"); b.innerHTML="";
+[q[i][1],q[i][2],q[i][3]].forEach((a,n)=>{
+let btn=document.createElement("button");btn.textContent=a;
+btn.onclick=()=>{if(n==0){score++;document.getElementById("result").textContent="✅ Правильно"}else{document.getElementById("result").textContent="❌ Правильный ответ: "+q[i][1]}document.getElementById("score").textContent=score;i++;setTimeout(show,700)};
+b.appendChild(btn);
+});
+}
+show();
+</script>
+</body>
+</html>
